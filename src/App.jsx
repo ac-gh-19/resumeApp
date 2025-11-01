@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import './App.css'
-import Header from './components/Header'
+// import { useState } from 'react'
+import "./App.css";
+import MainPage from "./pages/MainPage";
 
 function App() {
-
   return (
     <>
-      <Header title="CV Generator"/>
+      <MainPage></MainPage>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
