@@ -1,4 +1,5 @@
 export default function Input({
+  title,
   type,
   placeholder,
   onChange,
@@ -7,26 +8,31 @@ export default function Input({
   style,
 }) {
   return type === "text" ? (
-    <input
-      type={type}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value}
-      id={id}
-      className={
-        "bg-black px-4 py-1 border rounded-md text-white focus:outline-gray-400"
-      }
-      style={style}
-    ></input>
+    <label className="flex flex-col gap-1 font-medium" style={style}>
+      {title}
+      <input
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        id={id}
+        className={
+          "bg-black border-stone-600 px-4 py-1 border rounded-md text-white font-normal focus:outline-stone-500"
+        }
+      ></input>
+    </label>
   ) : (
-    <textarea
-      type={type}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value}
-      id={id}
-      className="bg-black px-4 py-1 border rounded-sm text-white focus:outline-gray-400 min-h-25"
-      style={style}
-    ></textarea>
+    <label className="flex flex-col gap-1 font-medium" style={style}>
+      {title}
+      <textarea
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+        id={id}
+        className="bg-black border-stone-600 px-4 py-1 border rounded-sm text-white focus:outline-stone-500 min-h-25 "
+        style={style}
+      ></textarea>
+    </label>
   );
 }

@@ -1,8 +1,9 @@
 import Input from "../components/Input";
+import SectionContainer from "../components/SectionContainer";
 
 export default function InfoSection({ personalInfo, setPersonalInfo }) {
   return (
-    <div className="px-6 py-3 flex flex-col gap-3">
+    <SectionContainer>
       <h1 className="text-lg font-semibold">Personal Info</h1>
       <div className="grid grid-cols-2 gap-5">
         <Input
@@ -62,6 +63,6 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           style={{ gridColumn: "span 2" }}
         ></Input>
       </div>
-    </div>
+    </SectionContainer>
   );
 }
