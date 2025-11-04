@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import InfoSection from "./InfoSection";
+import ExperienceSection from "./ExperienceSection";
 
 import { useState } from "react";
 
@@ -13,6 +14,8 @@ export default function MainPage() {
     summary: "",
   });
 
+  const [experiences, setExperiences] = useState([]);
+
   return (
     <>
       <Header title="CV Generator"></Header>
@@ -20,7 +23,10 @@ export default function MainPage() {
         personalInfo={personalInfo}
         setPersonalInfo={setPersonalInfo}
       ></InfoSection>
-      {console.log(personalInfo)}
+      <ExperienceSection
+        experiences={experiences}
+        setExperiences={setExperiences}
+      ></ExperienceSection>
     </>
   );
 }

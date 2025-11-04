@@ -7,7 +7,7 @@ export default function Input({
   id,
   style,
 }) {
-  return type === "text" ? (
+  return type != "textarea" ? (
     <label className="flex flex-col gap-1 font-medium" style={style}>
       {title}
       <input

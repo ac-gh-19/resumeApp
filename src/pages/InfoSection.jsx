@@ -1,10 +1,11 @@
 import Input from "../components/Input";
 import SectionContainer from "../components/SectionContainer";
+import SectionHeader from "../components/SectionHeader";
 
 export default function InfoSection({ personalInfo, setPersonalInfo }) {
   return (
     <SectionContainer>
-      <h1 className="text-lg font-semibold">Personal Info</h1>
+      <SectionHeader title="Personal Info"></SectionHeader>
       <div className="grid grid-cols-2 gap-5">
         <Input
           type="text"
@@ -53,7 +54,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           style={{ gridColumn: "span 2" }}
         ></Input>
         <Input
-          type="textfield"
+          type="textarea"
           placeholder="Brief Summary"
           id="summary"
           onChange={(e) => {
