@@ -39,6 +39,14 @@ export default function ExperienceSection({ experiences, setExperiences }) {
     );
   }
 
+  function deleteExperience(deletedExp) {
+    if (experiences.length == 1) return;
+    const newExperiences = experiences.filter(
+      (exp) => exp.id !== deletedExp.id,
+    );
+    setExperiences(newExperiences);
+  }
+
   return (
     <SectionContainer>
       <SectionHeader
@@ -49,13 +57,16 @@ export default function ExperienceSection({ experiences, setExperiences }) {
         }}
       ></SectionHeader>
       {experiences.map((exp, index) => (
-        <ExperienceForm
-          key={exp.id}
-          exp={exp}
-          index={index}
-          onChange={updateExperience}
-          addDescription={addDescription}
-        >{index !== experiences.length - 1 && <Divider></Divider>}</ExperienceForm>
+        <div key={exp.id}>
+          <ExperienceForm
+            exp={exp}
+            index={index}
+            onChange={updateExperience}
+            addDescription={addDescription}
+            deleteExperience={deleteExperience}
+          ></ExperienceForm>
+          {index !== experiences.length - 1 && <Divider></Divider>}
+        </div>
       ))}
     </SectionContainer>
   );
