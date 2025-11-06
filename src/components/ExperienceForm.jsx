@@ -11,7 +11,6 @@ export default function ExperienceForm({
     const { id, value } = e.target;
     onChange({ ...exp, [id]: value });
   }
-  console.log(exp);
 
   function handleDescriptionChange(e) {
     const { id, value } = e.target;
@@ -20,6 +19,7 @@ export default function ExperienceForm({
     );
     onChange({ ...exp, descriptions: updatedDescriptions });
   }
+
   return (
     <>
       <div className="flex justify-between mb-3">

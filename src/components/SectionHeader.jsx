@@ -16,7 +16,7 @@ export default function SectionHeader({ title, button = false, onClick }) {
           ""
         )}
       </div>
-      <Divider></Divider>
+      <Divider bottom="mb-5"></Divider>
     </>
   );
 }

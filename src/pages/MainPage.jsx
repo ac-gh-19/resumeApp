@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import InfoSection from "./InfoSection";
 import ExperienceSection from "./ExperienceSection";
+import EducationSection from "./EducationSection";
 
 import { useState } from "react";
 
@@ -16,6 +17,8 @@ export default function MainPage() {
 
   const [experiences, setExperiences] = useState([]);
 
+  const [educations, setEducations] = useState([]);
+
   return (
     <>
       <Header title="CV Generator"></Header>
@@ -27,6 +30,14 @@ export default function MainPage() {
         experiences={experiences}
         setExperiences={setExperiences}
       ></ExperienceSection>
+      <EducationSection
+        educations={educations}
+        setEducations={setEducations}
+      ></EducationSection>
+      <input
+        className="border"
+        onChange={() => console.log("changing")}
+      ></input>
     </>
   );
 }

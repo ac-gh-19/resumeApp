@@ -65,7 +65,9 @@ export default function ExperienceSection({ experiences, setExperiences }) {
             addDescription={addDescription}
             deleteExperience={deleteExperience}
           ></ExperienceForm>
-          {index !== experiences.length - 1 && <Divider></Divider>}
+          {index !== experiences.length - 1 && (
+            <Divider top="mt-10" bottom="mb-6"></Divider>
+          )}
         </div>
       ))}
     </SectionContainer>
