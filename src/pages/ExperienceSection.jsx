@@ -5,6 +5,7 @@ import ExperienceForm from "../components/ExperienceForm";
 import Divider from "../components/Divider";
 
 export default function ExperienceSection({ experiences, setExperiences }) {
+    console.log(experiences);
   function addExperience() {
     const newExperience = {
       id: crypto.randomUUID(),
@@ -47,6 +48,16 @@ export default function ExperienceSection({ experiences, setExperiences }) {
     setExperiences(newExperiences);
   }
 
+  function deleteDescription(expID, descID) {
+    setExperiences(experiences.map((experience) => 
+        experience.id === expID ? {...experience, descriptions:
+            experience.descriptions.filter((description) => 
+                description.id != descID
+            )
+        } : experience
+    ))
+  }
+
   return (
     <SectionContainer>
       <SectionHeader
@@ -64,6 +75,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
             onChange={updateExperience}
             addDescription={addDescription}
             deleteExperience={deleteExperience}
+            deleteDescription={deleteDescription}
           ></ExperienceForm>
           {index !== experiences.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>

@@ -6,6 +6,7 @@ export default function ExperienceForm({
   index,
   addDescription,
   deleteExperience,
+  deleteDescription,
 }) {
   function handleChange(e) {
     const { id, value } = e.target;
@@ -20,6 +21,13 @@ export default function ExperienceForm({
     onChange({ ...exp, descriptions: updatedDescriptions });
   }
 
+  function handleDescriptionDelete(description) {
+    console.log("Handling description delete", description);
+    const descID = description.id;
+    const expID = exp.id;
+    deleteDescription(expID, descID);
+  }
+  
   return (
     <>
       <div className="flex justify-between mb-3">
@@ -78,14 +86,18 @@ export default function ExperienceForm({
           </button>
         </div>
         {exp.descriptions.map((description) => (
+        <div className="flex"
+        key={description.id}>
           <Input
-            key={description.id}
             type="text"
             placeholder="Description"
             id={description.id}
             onChange={(e) => handleDescriptionChange(e)}
             value={description.text}
+            style={{flexGrow: 1}}
           ></Input>
+          <button onClick={() => handleDescriptionDelete(description)}className="px-2">X</button>
+        </div>
         ))}
       </div>
     </>

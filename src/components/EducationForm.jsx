@@ -3,12 +3,26 @@ import Input from "./Input";
 export default function EducationForm({
   onChange,
   onDelete,
+  deleteDetail,
+  addDetail,
   education,
   index,
 }) {
   function handleChange(e) {
     const { value, id } = e.target;
     onChange({ ...education, [id]: value });
+  }
+
+  function handleDetailChange(e) {
+    const {value, id} = e.target;
+    const newDetails = education.details.map(detail => detail.id === id ? {...detail, text: value} : detail);
+    onChange({...education, details: newDetails})
+  }
+
+function handleDetailDelete(detail) {
+    const detailID = detail.id;
+    const educationID = education.id;
+    deleteDetail(educationID, detailID);
   }
   return (
     <>
@@ -56,6 +70,29 @@ export default function EducationForm({
             style={{ flexGrow: 1, flexShrink: 1 }}
           ></Input>
         </div>
+        <div className="flex justify-between pt-3">
+          <div>Details</div>
+          <button
+            onClick={() => addDetail(education.id)}
+            className="border rounded border-stone-300 px-2 bg-stone-700"
+          >
+            Add
+          </button>
+        </div>
+        {education.details.map(detail => 
+        <div className="flex">
+            <Input
+                key={detail.id}
+                type="text"
+                placeholder="Detail"
+                id={detail.id}
+                onChange={(e) => handleDetailChange(e)}
+                value={detail.text}
+                style={{flexGrow: 1}}>
+            </Input>
+            <button onClick={() => handleDetailDelete(detail)} className="px-2">X</button>
+        </div>
+        )}
       </div>
     </>
   );

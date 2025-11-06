@@ -4,8 +4,7 @@ import Divider from "../components/Divider";
 import EducationForm from "../components/EducationForm";
 
 export default function EducationSection({ educations, setEducations }) {
-  // degree, school, startdate, enddate
-  console.log(educations);
+//   console.log(educations);
   function addEducation() {
     const newEducation = {
       id: crypto.randomUUID(),
@@ -13,6 +12,7 @@ export default function EducationSection({ educations, setEducations }) {
       school: "",
       startDate: "",
       endDate: "",
+      details: [],
     };
     setEducations((educations) => [...educations, newEducation]);
   }
@@ -32,6 +32,32 @@ export default function EducationSection({ educations, setEducations }) {
     );
   }
 
+  function addDetail(educationID) {
+    setEducations(
+      educations.map((education) =>
+        education.id === educationID
+          ? {
+              ...education,
+              details: [
+                ...education.details,
+                { id: crypto.randomUUID(), text: "" },
+              ],
+            }
+          : education,
+      ),
+    );
+  }
+
+    function deleteDetail(educationID, detailID) {
+    setEducations(educations.map((education) => 
+        education.id === educationID ? {...education, details:
+            education.details.filter((detail) => 
+                detail.id != detailID
+            )
+        } : education
+    ))
+  }
+
   return (
     <SectionContainer>
       <SectionHeader
@@ -45,7 +71,9 @@ export default function EducationSection({ educations, setEducations }) {
             index={index}
             onChange={updateEducation}
             onDelete={deleteEducation}
+            addDetail={addDetail}
             education={education}
+            deleteDetail={deleteDetail}
           ></EducationForm>
           {index !== educations.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>
