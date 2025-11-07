@@ -8,6 +8,13 @@ export default function ExperienceForm({
   deleteExperience,
   deleteDescription,
 }) {
+  function createNewDescription() {
+    return {
+      id: crypto.randomUUID(),
+      text: "",
+    };
+  }
+
   function handleChange(e) {
     const { id, value } = e.target;
     onChange({ ...exp, [id]: value });
@@ -21,13 +28,6 @@ export default function ExperienceForm({
     onChange({ ...exp, descriptions: updatedDescriptions });
   }
 
-  function handleDescriptionDelete(description) {
-    console.log("Handling description delete", description);
-    const descID = description.id;
-    const expID = exp.id;
-    deleteDescription(expID, descID);
-  }
-  
   return (
     <>
       <div className="flex justify-between mb-3">
@@ -79,25 +79,33 @@ export default function ExperienceForm({
         <div className="flex justify-between pt-3">
           <div>Details / Achievements</div>
           <button
-            onClick={() => addDescription(exp.id)}
+            onClick={() =>
+              addDescription(exp.id, "descriptions", createNewDescription)
+            }
             className="border rounded border-stone-300 px-2 bg-stone-700"
           >
             Add
           </button>
         </div>
         {exp.descriptions.map((description) => (
-        <div className="flex"
-        key={description.id}>
-          <Input
-            type="text"
-            placeholder="Description"
-            id={description.id}
-            onChange={(e) => handleDescriptionChange(e)}
-            value={description.text}
-            style={{flexGrow: 1}}
-          ></Input>
-          <button onClick={() => handleDescriptionDelete(description)}className="px-2">X</button>
-        </div>
+          <div className="flex" key={description.id}>
+            <Input
+              type="text"
+              placeholder="Description"
+              id={description.id}
+              onChange={(e) => handleDescriptionChange(e)}
+              value={description.text}
+              style={{ flexGrow: 1 }}
+            ></Input>
+            <button
+              onClick={() =>
+                deleteDescription(exp.id, "descriptions", description.id)
+              }
+              className="px-2"
+            >
+              X
+            </button>
+          </div>
         ))}
       </div>
     </>

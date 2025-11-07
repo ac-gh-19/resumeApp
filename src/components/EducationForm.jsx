@@ -2,7 +2,7 @@ import Input from "./Input";
 
 export default function EducationForm({
   onChange,
-  onDelete,
+  deleteEducation,
   deleteDetail,
   addDetail,
   education,
@@ -14,22 +14,26 @@ export default function EducationForm({
   }
 
   function handleDetailChange(e) {
-    const {value, id} = e.target;
-    const newDetails = education.details.map(detail => detail.id === id ? {...detail, text: value} : detail);
-    onChange({...education, details: newDetails})
+    const { value, id } = e.target;
+    const newDetails = education.details.map((detail) =>
+      detail.id === id ? { ...detail, text: value } : detail,
+    );
+    onChange({ ...education, details: newDetails });
   }
 
-function handleDetailDelete(detail) {
-    const detailID = detail.id;
-    const educationID = education.id;
-    deleteDetail(educationID, detailID);
-  }
+  function createNewDetail() {
+        return {
+            id: crypto.randomUUID(),
+            text: "",
+        }
+}
+
   return (
     <>
       <div className="flex justify-between mb-3">
         <h1 className="font-semibold">Education {index + 1}</h1>
         <button
-          onClick={() => onDelete(education)}
+          onClick={() => deleteEducation(education)}
           className="border rounded border-stone-300 px-2 bg-stone-700 text-red"
         >
           Delete
@@ -73,26 +77,28 @@ function handleDetailDelete(detail) {
         <div className="flex justify-between pt-3">
           <div>Details</div>
           <button
-            onClick={() => addDetail(education.id)}
+            onClick={() => addDetail(education.id, "details", createNewDetail)}
             className="border rounded border-stone-300 px-2 bg-stone-700"
           >
             Add
           </button>
         </div>
-        {education.details.map(detail => 
-        <div className="flex">
+        {education.details.map((detail) => (
+          <div className="flex"
+          key={detail.id}>
             <Input
-                key={detail.id}
-                type="text"
-                placeholder="Detail"
-                id={detail.id}
-                onChange={(e) => handleDetailChange(e)}
-                value={detail.text}
-                style={{flexGrow: 1}}>
-            </Input>
-            <button onClick={() => handleDetailDelete(detail)} className="px-2">X</button>
-        </div>
-        )}
+              type="text"
+              placeholder="Detail"
+              id={detail.id}
+              onChange={(e) => handleDetailChange(e)}
+              value={detail.text}
+              style={{ flexGrow: 1 }}
+            ></Input>
+            <button onClick={() => deleteDetail(education.id, "details", detail.id)} className="px-2">
+              X
+            </button>
+          </div>
+        ))}
       </div>
     </>
   );

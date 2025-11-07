@@ -2,75 +2,42 @@ import SectionContainer from "../components/SectionContainer";
 import SectionHeader from "../components/SectionHeader";
 import Divider from "../components/Divider";
 import EducationForm from "../components/EducationForm";
+import useDynamicList from "../hooks/useDynamicList";
 
 export default function EducationSection({ educations, setEducations }) {
-//   console.log(educations);
-  function addEducation() {
-    const newEducation = {
-      id: crypto.randomUUID(),
-      degree: "",
-      school: "",
-      startDate: "",
-      endDate: "",
-      details: [],
-    };
-    setEducations((educations) => [...educations, newEducation]);
-  }
-
-  function updateEducation(updatedEducation) {
-    setEducations(
-      educations.map((education) =>
-        education.id === updatedEducation.id ? updatedEducation : education,
-      ),
-    );
-  }
-
-  function deleteEducation(deletedEducation) {
-    if (educations.length === 1) return;
-    setEducations(
-      educations.filter((education) => education.id != deletedEducation.id),
-    );
-  }
-
-  function addDetail(educationID) {
-    setEducations(
-      educations.map((education) =>
-        education.id === educationID
-          ? {
-              ...education,
-              details: [
-                ...education.details,
-                { id: crypto.randomUUID(), text: "" },
-              ],
-            }
-          : education,
-      ),
-    );
-  }
-
-    function deleteDetail(educationID, detailID) {
-    setEducations(educations.map((education) => 
-        education.id === educationID ? {...education, details:
-            education.details.filter((detail) => 
-                detail.id != detailID
-            )
-        } : education
-    ))
-  }
+  //   console.log(educations);
+  const {
+      addItem: addEducation,
+      updateItem: updateEducation,
+      deleteItem: deleteEducation,
+      addNestedItem: addDetail,
+      deleteNestedItem: deleteDetail,
+    } = useDynamicList(educations, setEducations);
+  
+    function createNewEducation() {
+      return {
+        id: crypto.randomUUID(),
+        degree: "",
+        school: "",
+        startDate: "",
+        endDate: "",
+        details: [],
+      };
+    }
 
   return (
     <SectionContainer>
       <SectionHeader
         title="Education"
         button={true}
-        onClick={() => addEducation()}
+        onClick={() => addEducation(createNewEducation)}
       ></SectionHeader>
       {educations.map((education, index) => (
         <div key={education.id}>
           <EducationForm
             index={index}
             onChange={updateEducation}
-            onDelete={deleteEducation}
+            deleteEducation={deleteEducation}
             addDetail={addDetail}
             education={education}
             deleteDetail={deleteDetail}

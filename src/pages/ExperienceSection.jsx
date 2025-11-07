@@ -3,11 +3,19 @@ import SectionContainer from "../components/SectionContainer";
 import SectionHeader from "../components/SectionHeader";
 import ExperienceForm from "../components/ExperienceForm";
 import Divider from "../components/Divider";
+import useDynamicList from "../hooks/useDynamicList";
 
 export default function ExperienceSection({ experiences, setExperiences }) {
-    console.log(experiences);
-  function addExperience() {
-    const newExperience = {
+  const {
+    addItem: addExperience,
+    updateItem: updateExperience,
+    deleteItem: deleteExperience,
+    addNestedItem: addDescription,
+    deleteNestedItem: deleteDescription,
+  } = useDynamicList(experiences, setExperiences);
+
+  function createNewExperience() {
+    return {
       id: crypto.randomUUID(),
       jobTitle: "",
       company: "",
@@ -15,47 +23,6 @@ export default function ExperienceSection({ experiences, setExperiences }) {
       endDate: "",
       descriptions: [],
     };
-    setExperiences((experiences) => [...experiences, newExperience]);
-  }
-
-  function addDescription(expId) {
-    setExperiences((experiences) =>
-      experiences.map((exp) =>
-        exp.id === expId
-          ? {
-              ...exp,
-              descriptions: [
-                ...exp.descriptions,
-                { id: crypto.randomUUID(), text: "" },
-              ],
-            }
-          : exp,
-      ),
-    );
-  }
-
-  function updateExperience(updatedExp) {
-    setExperiences((experiences) =>
-      experiences.map((exp) => (exp.id === updatedExp.id ? updatedExp : exp)),
-    );
-  }
-
-  function deleteExperience(deletedExp) {
-    if (experiences.length == 1) return;
-    const newExperiences = experiences.filter(
-      (exp) => exp.id !== deletedExp.id,
-    );
-    setExperiences(newExperiences);
-  }
-
-  function deleteDescription(expID, descID) {
-    setExperiences(experiences.map((experience) => 
-        experience.id === expID ? {...experience, descriptions:
-            experience.descriptions.filter((description) => 
-                description.id != descID
-            )
-        } : experience
-    ))
   }
 
   return (
@@ -64,7 +31,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
         title="Experience"
         button={true}
         onClick={() => {
-          addExperience();
+          addExperience(createNewExperience);
         }}
       ></SectionHeader>
       {experiences.map((exp, index) => (
@@ -73,8 +40,8 @@ export default function ExperienceSection({ experiences, setExperiences }) {
             exp={exp}
             index={index}
             onChange={updateExperience}
-            addDescription={addDescription}
             deleteExperience={deleteExperience}
+            addDescription={addDescription}
             deleteDescription={deleteDescription}
           ></ExperienceForm>
           {index !== experiences.length - 1 && (

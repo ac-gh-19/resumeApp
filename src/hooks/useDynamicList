@@ -1,0 +1,51 @@
+import { useCallback } from "react";
+
+export default function useDynamicList(list, setList) {
+    const addItem = useCallback(
+        (createNewItem) => {
+            const newItem = createNewItem();
+            setList((prevList) => [...prevList, newItem])
+        },
+        [setList],
+    )
+
+    const updateItem = useCallback(
+        (updatedItem) => {
+            setList(prevList => prevList.map((item) => item.id === updatedItem.id ? updatedItem: item))
+        },
+        [setList],
+    )
+
+    const deleteItem = useCallback(
+        (deletedItem) => {
+            setList(prevList => {
+                if (prevList.length === 1) return prevList;
+                return prevList.filter(item => item.id != deletedItem.id)})
+        },
+        [setList],
+    )
+
+    const addNestedItem = useCallback(
+        (itemID, key, createNewSubItem) => {
+            setList(prevList => prevList.map(item =>
+                item.id === itemID ?
+                {...item, [key]: [...item[key], createNewSubItem()]} : item
+            ))
+        },
+        [setList],
+    )
+
+    const deleteNestedItem = useCallback(
+        (itemID, key, nestedID) => {
+            setList(prevList => prevList.map(item => 
+                item.id === itemID ?
+                {...item, [key]: item[key].filter(nestedItem =>
+                    nestedItem.id != nestedID
+                )} : item
+            )
+            )
+        },
+        [setList],
+    )
+    return { addItem, updateItem, deleteItem, addNestedItem, deleteNestedItem };
+}

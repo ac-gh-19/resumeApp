@@ -34,10 +34,6 @@ export default function MainPage() {
         educations={educations}
         setEducations={setEducations}
       ></EducationSection>
-      <input
-        className="border"
-        onChange={() => console.log("changing")}
-      ></input>
     </>
   );
 }
