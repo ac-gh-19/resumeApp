@@ -5,25 +5,25 @@ import EducationForm from "../components/EducationForm";
 import useDynamicList from "../hooks/useDynamicList";
 
 export default function EducationSection({ educations, setEducations }) {
-  //   console.log(educations);
+    console.log(educations);
   const {
-      addItem: addEducation,
-      updateItem: updateEducation,
-      deleteItem: deleteEducation,
-      addNestedItem: addDetail,
-      deleteNestedItem: deleteDetail,
-    } = useDynamicList(educations, setEducations);
-  
-    function createNewEducation() {
-      return {
-        id: crypto.randomUUID(),
-        degree: "",
-        school: "",
-        startDate: "",
-        endDate: "",
-        details: [],
-      };
-    }
+    addItem: addEducation,
+    updateItem: updateEducation,
+    deleteItem: deleteEducation,
+    addNestedItem: addDetail,
+    deleteNestedItem: deleteDetail,
+  } = useDynamicList(educations, setEducations);
+
+  function createNewEducation() {
+    return {
+      id: crypto.randomUUID(),
+      degree: "",
+      school: "",
+      startDate: "",
+      endDate: "",
+      details: [],
+    };
+  }
 
   return (
     <SectionContainer>

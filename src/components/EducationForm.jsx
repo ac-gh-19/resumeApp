@@ -22,11 +22,11 @@ export default function EducationForm({
   }
 
   function createNewDetail() {
-        return {
-            id: crypto.randomUUID(),
-            text: "",
-        }
-}
+    return {
+      id: crypto.randomUUID(),
+      text: "",
+    };
+  }
 
   return (
     <>
@@ -84,8 +84,7 @@ export default function EducationForm({
           </button>
         </div>
         {education.details.map((detail) => (
-          <div className="flex"
-          key={detail.id}>
+          <div className="flex" key={detail.id}>
             <Input
               type="text"
               placeholder="Detail"
@@ -94,7 +93,10 @@ export default function EducationForm({
               value={detail.text}
               style={{ flexGrow: 1 }}
             ></Input>
-            <button onClick={() => deleteDetail(education.id, "details", detail.id)} className="px-2">
+            <button
+              onClick={() => deleteDetail(education.id, "details", detail.id)}
+              className="px-2"
+            >
               X
             </button>
           </div>

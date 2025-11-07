@@ -30,7 +30,7 @@ export default function Input({
         onChange={onChange}
         value={value}
         id={id}
-        className="bg-black border-stone-600 px-4 py-1 border rounded-sm text-white focus:outline-stone-500 min-h-25 "
+        className="bg-black border-stone-600 px-4 py-1 border rounded-sm text-white focus:outline-stone-500 "
         style={style}
       ></textarea>
     </label>
