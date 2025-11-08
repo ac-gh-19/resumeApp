@@ -8,6 +8,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
       <SectionHeader title="Personal Info"></SectionHeader>
       <div className="grid grid-cols-2 gap-5">
         <Input
+        title="Full Name"
           type="text"
           placeholder="Full Name"
           id="fullName"
@@ -17,6 +18,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           value={personalInfo.fullName}
         ></Input>
         <Input
+        title="Job Title"
           type="text"
           placeholder="Job Title"
           id="jobTitle"
@@ -26,6 +28,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           value={personalInfo.jobTitle}
         ></Input>
         <Input
+        title="Email"
           type="text"
           placeholder="Email"
           id="email"
@@ -35,6 +38,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           value={personalInfo.email}
         ></Input>
         <Input
+        title="Phone"
           type="text"
           placeholder="Phone"
           id="phoneNumber"
@@ -44,6 +48,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           value={personalInfo.phoneNumber}
         ></Input>
         <Input
+        title="Location"
           type="text"
           placeholder="Location"
           id="location"
@@ -54,6 +59,7 @@ export default function InfoSection({ personalInfo, setPersonalInfo }) {
           style={{ gridColumn: "span 2" }}
         ></Input>
         <Input
+        title="Brief Summary"
           type="textarea"
           placeholder="Brief Summary"
           id="summary"

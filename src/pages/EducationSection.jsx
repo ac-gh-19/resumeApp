@@ -5,7 +5,6 @@ import EducationForm from "../components/EducationForm";
 import useDynamicList from "../hooks/useDynamicList";
 
 export default function EducationSection({ educations, setEducations }) {
-    console.log(educations);
   const {
     addItem: addEducation,
     updateItem: updateEducation,
@@ -21,7 +20,14 @@ export default function EducationSection({ educations, setEducations }) {
       school: "",
       startDate: "",
       endDate: "",
-      details: [],
+      details: [createNewDetail(), createNewDetail()],
+    };
+  }
+
+  function createNewDetail() {
+    return {
+      id: crypto.randomUUID(),
+      text: "",
     };
   }
 
@@ -41,6 +47,7 @@ export default function EducationSection({ educations, setEducations }) {
             addDetail={addDetail}
             education={education}
             deleteDetail={deleteDetail}
+            createNewDetail={createNewDetail}
           ></EducationForm>
           {index !== educations.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>

@@ -3,6 +3,7 @@ import InfoSection from "./InfoSection";
 import ExperienceSection from "./ExperienceSection";
 import EducationSection from "./EducationSection";
 import CVPreview from "./CVPreview";
+import SkillsSection from "./SkillsSection.jsx";
 
 import { useState } from "react";
 
@@ -20,6 +21,8 @@ export default function MainPage() {
 
   const [educations, setEducations] = useState([]);
 
+  const [skills, setSkills] = useState([]);
+
   return (
     <>
       <div className="h-screen">
@@ -27,7 +30,7 @@ export default function MainPage() {
           <Header title="CV Generator"></Header>
         </div>
         <div className="flex flex-wrap mt-13">
-            <div className="flex-1 p-5 pr-2.5 flex flex-col gap-5">
+            <div className="flex-1 shrink p-5 pr-2.5 flex flex-col gap-5">
                 <InfoSection
                 personalInfo={personalInfo}
                 setPersonalInfo={setPersonalInfo}
@@ -40,14 +43,19 @@ export default function MainPage() {
                 educations={educations}
                 setEducations={setEducations}
                 ></EducationSection>
+                <SkillsSection
+                skills={skills}
+                setSkills={setSkills}>
+                </SkillsSection>
             </div>
-          <div className="p-5 pl-2.5 flex-1 min-w-sm">
+          <div className="p-5 pl-2.5 flex-1 min-w-xs xs:min-w-sm">
             <div div className="sticky top-18">
               <div className="h-full overflow-y-auto shadow-stone-500 shadow-lg">
                 <CVPreview
                   personalInfo={personalInfo}
                   educations={educations}
                   experiences={experiences}
+                  skills={skills}
                 ></CVPreview>
               </div>
             </div>

@@ -7,13 +7,8 @@ export default function ExperienceForm({
   addDescription,
   deleteExperience,
   deleteDescription,
+  createNewDescription,
 }) {
-  function createNewDescription() {
-    return {
-      id: crypto.randomUUID(),
-      text: "",
-    };
-  }
 
   function handleChange(e) {
     const { id, value } = e.target;
@@ -77,7 +72,7 @@ export default function ExperienceForm({
           ></Input>
         </div>
         <div className="flex justify-between pt-3">
-          <div>Details / Achievements</div>
+          <div>Details</div>
           <button
             onClick={() =>
               addDescription(exp.id, "descriptions", createNewDescription)
@@ -91,7 +86,7 @@ export default function ExperienceForm({
           <div className="flex" key={description.id}>
             <Input
               type="text"
-              placeholder="Description"
+              placeholder="Detail"
               id={description.id}
               onChange={(e) => handleDescriptionChange(e)}
               value={description.text}

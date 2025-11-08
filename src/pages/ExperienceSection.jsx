@@ -21,7 +21,14 @@ export default function ExperienceSection({ experiences, setExperiences }) {
       company: "",
       startDate: "",
       endDate: "",
-      descriptions: [],
+      descriptions: [createNewDescription(), createNewDescription()],
+    };
+  }
+
+  function createNewDescription() {
+    return {
+      id: crypto.randomUUID(),
+      text: "",
     };
   }
 
@@ -43,6 +50,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
             deleteExperience={deleteExperience}
             addDescription={addDescription}
             deleteDescription={deleteDescription}
+            createNewDescription={createNewDescription}
           ></ExperienceForm>
           {index !== experiences.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>

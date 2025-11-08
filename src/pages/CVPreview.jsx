@@ -1,4 +1,4 @@
-export default function CVPreview({ personalInfo, experiences, educations }) {
+export default function CVPreview({ personalInfo, experiences, educations, skills }) {
   return (
     <div className="p-10 bg-white text-gray-900 font-sans leading-tight tracking-tight text-[0.95rem] shadow-sm">
       <header className="border-b border-gray-400 pb-2 mb-4">
@@ -10,23 +10,21 @@ export default function CVPreview({ personalInfo, experiences, educations }) {
         </h2>
         <p className="text-sm text-center mt-1">
           {[
-            personalInfo.email,
-            personalInfo.phoneNumber,
-            personalInfo.location,
+            personalInfo.email ? personalInfo.email : "xxx123@gmail.com",
+            personalInfo.phoneNumber ? personalInfo.phoneNumber : "123-456-7890",
+            personalInfo.location ? personalInfo.location : "Riverside, CA",
           ]
-            .filter(Boolean)
-            .join("  •  ")}
+            .join("  |  ")}
         </p>
       </header>
 
-      {personalInfo.summary && (
         <section className="mb-4">
           <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
             Summary
           </h3>
           <p className="text-[0.95rem] leading-snug">{personalInfo.summary}</p>
         </section>
-      )}
+      
 
       <section className="mb-4">
         <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
@@ -62,7 +60,7 @@ export default function CVPreview({ personalInfo, experiences, educations }) {
         )}
       </section>
 
-      <section>
+      <section className="mb-4">
         <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
           Education
         </h3>
@@ -94,6 +92,23 @@ export default function CVPreview({ personalInfo, experiences, educations }) {
             No education added yet.
           </p>
         )}
+      </section>
+
+      <section>
+        <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
+          Skills
+        </h3>
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-1">
+            {skills.map((skill) => (
+              <li key={skill.id} className="text-[0.9rem]">
+                •  {skill.text}
+              </li>
+            ))}
+        </ul>
+        <div>
+
+        </div>
+
       </section>
     </div>
   );

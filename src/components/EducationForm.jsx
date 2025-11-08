@@ -7,6 +7,7 @@ export default function EducationForm({
   addDetail,
   education,
   index,
+  createNewDetail,
 }) {
   function handleChange(e) {
     const { value, id } = e.target;
@@ -19,13 +20,6 @@ export default function EducationForm({
       detail.id === id ? { ...detail, text: value } : detail,
     );
     onChange({ ...education, details: newDetails });
-  }
-
-  function createNewDetail() {
-    return {
-      id: crypto.randomUUID(),
-      text: "",
-    };
   }
 
   return (

@@ -19,7 +19,6 @@ export default function useDynamicList(list, setList) {
     const deleteItem = useCallback(
         (deletedItem) => {
             setList(prevList => {
-                if (prevList.length === 1) return prevList;
                 return prevList.filter(item => item.id != deletedItem.id)})
         },
         [setList],
