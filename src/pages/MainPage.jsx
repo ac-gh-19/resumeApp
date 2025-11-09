@@ -3,12 +3,14 @@ import InfoSection from "./InfoSection";
 import ExperienceSection from "./ExperienceSection";
 import EducationSection from "./EducationSection";
 import CVPreview from "./CVPreview";
+import AdditionalInfoSection from "./AdditionalInfoSection.jsx";
 import SkillsSection from "./SkillsSection.jsx";
 import { downloadPDF } from "../helpers/helpers.jsx";
 import {
   createNewEducation,
   createNewExperience,
   createNewDescription,
+  createNewAdditionalInfo,
 } from "../helpers/helpers.jsx";
 
 import { useState, useRef } from "react";
@@ -24,7 +26,7 @@ export default function MainPage() {
   });
 
   const [experiences, setExperiences] = useState(
-    Array.from({ length: 3 }, () => createNewExperience()),
+    Array.from({ length: 2 }, () => createNewExperience()),
   );
 
   const [educations, setEducations] = useState(
@@ -32,7 +34,11 @@ export default function MainPage() {
   );
 
   const [skills, setSkills] = useState(
-    Array.from({ length: 10 }, () => createNewDescription()),
+    Array.from({ length: 9 }, () => createNewDescription()),
+  );
+
+  const [additionalInfo, setAdditionalInfo] = useState(
+    Array.from({ length: 1 }, () => createNewAdditionalInfo()),
   );
 
   const exportRef = useRef();
@@ -63,6 +69,10 @@ export default function MainPage() {
               educations={educations}
               setEducations={setEducations}
             ></EducationSection>
+            <AdditionalInfoSection
+              additionalInfo={additionalInfo}
+              setAdditionalInfo={setAdditionalInfo}
+            ></AdditionalInfoSection>
             <SkillsSection
               skills={skills}
               setSkills={setSkills}
@@ -76,6 +86,7 @@ export default function MainPage() {
                   educations={educations}
                   experiences={experiences}
                   skills={skills}
+                  additionalInfo={additionalInfo}
                 ></CVPreview>
               </div>
             </div>
@@ -94,6 +105,7 @@ export default function MainPage() {
               educations={educations}
               experiences={experiences}
               skills={skills}
+              additionalInfo={additionalInfo}
             ></CVPreview>
           </div>
         </div>

@@ -3,6 +3,7 @@ export default function CVPreview({
   experiences,
   educations,
   skills,
+  additionalInfo,
 }) {
   const DEFAULT_SUMMARY =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis. Curabitur in libero ut volutpat convallis. Morbi facilisis, urna in dapibus blandit, at vehicula elit nibh eu justo.";
@@ -106,7 +107,7 @@ export default function CVPreview({
         )}
       </section>
 
-      <section>
+      <section className="pt-4">
         <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 pt-4">
           Skills
         </h3>
@@ -114,7 +115,7 @@ export default function CVPreview({
           <ul
             className="grid gap-x-2 gap-y-1 pt-2"
             style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
             }}
           >
             {skills.map((skill) => (
@@ -128,6 +129,26 @@ export default function CVPreview({
             No skills added yet.
           </p>
         )}
+      </section>
+
+      <section>
+        <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 pt-2">
+          Additional
+        </h3>
+        {additionalInfo.length > 0
+          ? additionalInfo.map((additional) => (
+              <ul className="list-disc pl-5 space-y-0.5">
+                {additional.descriptions.map((description) => (
+                  <li key={description.id} className="leading-snug">
+                    <span className="font-semibold">
+                      {description.label || "Category"}
+                    </span>
+                    : {description.text || "description"}
+                  </li>
+                ))}
+              </ul>
+            ))
+          : null}
       </section>
     </div>
   );

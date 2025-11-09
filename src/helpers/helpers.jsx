@@ -8,7 +8,11 @@ function createNewExperience() {
     company: "",
     startDate: "",
     endDate: "",
-    descriptions: [createNewDescription(), createNewDescription()],
+    descriptions: [
+      createNewDescription(),
+      createNewDescription(),
+      createNewDescription(),
+    ],
   };
 }
 
@@ -26,7 +30,31 @@ function createNewEducation() {
     school: "",
     startDate: "",
     endDate: "",
-    details: [createNewDescription(), createNewDescription()],
+    details: [
+      createNewDescription(),
+      createNewDescription(),
+      createNewDescription(),
+    ],
+  };
+}
+
+function createNewAdditionalDescription() {
+  return {
+    id: crypto.randomUUID(),
+    text: "",
+    label: "",
+  };
+}
+
+function createNewAdditionalInfo() {
+  return {
+    id: crypto.randomUUID(),
+    label: "",
+    descriptions: [
+      createNewDescription(),
+      createNewDescription(),
+      createNewDescription(),
+    ],
   };
 }
 
@@ -72,5 +100,7 @@ export {
   createNewExperience,
   createNewDescription,
   createNewEducation,
+  createNewAdditionalInfo,
+  createNewAdditionalDescription,
   downloadPDF,
 };
