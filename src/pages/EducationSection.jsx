@@ -3,7 +3,10 @@ import SectionHeader from "../components/SectionHeader";
 import Divider from "../components/Divider";
 import EducationForm from "../components/EducationForm";
 import useDynamicList from "../hooks/useDynamicList";
-import { createNewEducation, createNewDescription as createNewDetail } from "../helpers/helpers";
+import {
+  createNewEducation,
+  createNewDescription as createNewDetail,
+} from "../helpers/helpers";
 
 export default function EducationSection({ educations, setEducations }) {
   const {

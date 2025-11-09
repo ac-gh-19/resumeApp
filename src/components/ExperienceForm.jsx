@@ -9,7 +9,6 @@ export default function ExperienceForm({
   deleteDescription,
   createNewDescription,
 }) {
-
   function handleChange(e) {
     const { id, value } = e.target;
     onChange({ ...exp, [id]: value });
