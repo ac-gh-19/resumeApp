@@ -1,4 +1,8 @@
 export default function CVPreview({ personalInfo, experiences, educations, skills }) {
+    const DEFAULT_SUMMARY =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis. Curabitur in libero ut volutpat convallis. Morbi facilisis, urna in dapibus blandit, at vehicula elit nibh eu justo.";
+
+
   return (
     <div className="p-10 bg-white text-gray-900 font-sans leading-tight tracking-tight text-[0.95rem] shadow-sm">
       <header className="border-b border-gray-400 pb-2 mb-4">
@@ -22,7 +26,7 @@ export default function CVPreview({ personalInfo, experiences, educations, skill
           <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
             Summary
           </h3>
-          <p className="text-[0.95rem] leading-snug">{personalInfo.summary}</p>
+          <p className="text-[0.95rem] leading-snug">{personalInfo.summary ? personalInfo.summary : DEFAULT_SUMMARY}</p>
         </section>
       
 
@@ -98,17 +102,13 @@ export default function CVPreview({ personalInfo, experiences, educations, skill
         <h3 className="text-xs font-semibold uppercase tracking-widest border-b border-gray-300 pb-1 mb-2">
           Skills
         </h3>
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-1">
+        <ul className="grid gap-x-2 gap-y-1" style={{gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))"}}>
             {skills.map((skill) => (
-              <li key={skill.id} className="text-[0.9rem]">
+              <li key={skill.id} className="text-[0.9rem] ml-1.5">
                 •  {skill.text}
               </li>
             ))}
         </ul>
-        <div>
-
-        </div>
-
       </section>
     </div>
   );

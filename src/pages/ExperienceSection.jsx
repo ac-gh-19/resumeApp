@@ -4,6 +4,7 @@ import SectionHeader from "../components/SectionHeader";
 import ExperienceForm from "../components/ExperienceForm";
 import Divider from "../components/Divider";
 import useDynamicList from "../hooks/useDynamicList";
+import { createNewExperience, createNewDescription } from "../helpers/helpers";
 
 export default function ExperienceSection({ experiences, setExperiences }) {
   const {
@@ -13,24 +14,6 @@ export default function ExperienceSection({ experiences, setExperiences }) {
     addNestedItem: addDescription,
     deleteNestedItem: deleteDescription,
   } = useDynamicList(experiences, setExperiences);
-
-  function createNewExperience() {
-    return {
-      id: crypto.randomUUID(),
-      jobTitle: "",
-      company: "",
-      startDate: "",
-      endDate: "",
-      descriptions: [createNewDescription(), createNewDescription()],
-    };
-  }
-
-  function createNewDescription() {
-    return {
-      id: crypto.randomUUID(),
-      text: "",
-    };
-  }
 
   return (
     <SectionContainer>

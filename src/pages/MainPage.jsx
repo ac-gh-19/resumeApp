@@ -4,6 +4,7 @@ import ExperienceSection from "./ExperienceSection";
 import EducationSection from "./EducationSection";
 import CVPreview from "./CVPreview";
 import SkillsSection from "./SkillsSection.jsx";
+import { createNewEducation, createNewExperience, createNewDescription } from "../helpers/helpers.jsx";
 
 import { useState } from "react";
 
@@ -17,11 +18,11 @@ export default function MainPage() {
     summary: "",
   });
 
-  const [experiences, setExperiences] = useState([]);
+  const [experiences, setExperiences] = useState(Array.from({length: 2}, () => createNewExperience()));
 
-  const [educations, setEducations] = useState([]);
+  const [educations, setEducations] = useState(Array.from({length: 1}, () => createNewEducation()));
 
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState(Array.from({length: 12}, () => createNewDescription()));
 
   return (
     <>

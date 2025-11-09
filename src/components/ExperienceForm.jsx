@@ -72,7 +72,7 @@ export default function ExperienceForm({
           ></Input>
         </div>
         <div className="flex justify-between pt-3">
-          <div>Details</div>
+          <div>Descriptions</div>
           <button
             onClick={() =>
               addDescription(exp.id, "descriptions", createNewDescription)
@@ -86,7 +86,7 @@ export default function ExperienceForm({
           <div className="flex" key={description.id}>
             <Input
               type="text"
-              placeholder="Detail"
+              placeholder="Description"
               id={description.id}
               onChange={(e) => handleDescriptionChange(e)}
               value={description.text}

@@ -3,6 +3,7 @@ import SectionHeader from "../components/SectionHeader";
 import Divider from "../components/Divider";
 import EducationForm from "../components/EducationForm";
 import useDynamicList from "../hooks/useDynamicList";
+import { createNewEducation, createNewDescription as createNewDetail } from "../helpers/helpers";
 
 export default function EducationSection({ educations, setEducations }) {
   const {
@@ -12,24 +13,6 @@ export default function EducationSection({ educations, setEducations }) {
     addNestedItem: addDetail,
     deleteNestedItem: deleteDetail,
   } = useDynamicList(educations, setEducations);
-
-  function createNewEducation() {
-    return {
-      id: crypto.randomUUID(),
-      degree: "",
-      school: "",
-      startDate: "",
-      endDate: "",
-      details: [createNewDetail(), createNewDetail()],
-    };
-  }
-
-  function createNewDetail() {
-    return {
-      id: crypto.randomUUID(),
-      text: "",
-    };
-  }
 
   return (
     <SectionContainer>
