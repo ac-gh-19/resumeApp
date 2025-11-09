@@ -40,7 +40,7 @@ export default function EducationForm({
           placeholder="School"
           onChange={(e) => handleChange(e)}
           title="School"
-          id="school"
+          id={`${education.id}-school`}
         ></Input>
         <Input
           type="text"
@@ -48,7 +48,7 @@ export default function EducationForm({
           placeholder="Degree"
           onChange={(e) => handleChange(e)}
           title="Degree"
-          id="degree"
+          id={`${education.id}-degree`}
         ></Input>
         <div className="flex flex-wrap justify-between gap-5">
           <Input
@@ -56,7 +56,7 @@ export default function EducationForm({
             value={education.startDate}
             onChange={(e) => handleChange(e)}
             title="Start Date"
-            id="startDate"
+            id={`${education.id}-startDate`}
             style={{ flexGrow: 1, flexShrink: 1 }}
           ></Input>
           <Input
@@ -64,7 +64,7 @@ export default function EducationForm({
             value={education.endDate}
             onChange={(e) => handleChange(e)}
             title="End Date"
-            id="endDate"
+            id={`${education.id}-endDate`}
             style={{ flexGrow: 1, flexShrink: 1 }}
           ></Input>
         </div>

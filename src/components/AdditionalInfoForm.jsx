@@ -38,7 +38,7 @@ export default function AdditionalInfoForm({
               type="text"
               placeholder={`Category`}
               value={description.label}
-              id={description.id}
+              id={`${description.id}-category`}
               onChange={(e) => handleDescriptionChange(e, "label")}
               style={{ flexGrow: 1, flexShrink: 10 }}
             ></Input>

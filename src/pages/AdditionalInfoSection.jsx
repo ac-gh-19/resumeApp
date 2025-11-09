@@ -8,7 +8,6 @@ export default function AdditionalInfoSection({
   additionalInfo,
   setAdditionalInfo,
 }) {
-  console.log("additional info", additionalInfo);
   const {
     updateItem: updateAdditional,
     deleteItem: deleteAdditional,

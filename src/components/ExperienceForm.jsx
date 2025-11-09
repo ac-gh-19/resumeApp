@@ -38,7 +38,7 @@ export default function ExperienceForm({
           title="Job Title"
           type="text"
           placeholder="Job Title"
-          id="jobTitle"
+          id={`${exp.id}-jobTitle`}
           onChange={(e) => handleChange(e)}
           value={exp.jobTitle}
         ></Input>
@@ -46,7 +46,7 @@ export default function ExperienceForm({
           title="Company"
           type="text"
           placeholder="Company"
-          id="company"
+          id={`${exp.id}-company`}
           onChange={(e) => handleChange(e)}
           value={exp.company}
         ></Input>
@@ -55,7 +55,7 @@ export default function ExperienceForm({
             title="Start Date"
             type="date"
             placeholder="Start Date"
-            id="startDate"
+            id={`${exp.id}-startDate`}
             onChange={(e) => handleChange(e)}
             value={exp.startDate}
             style={{ flexGrow: 1, flexShrink: 1 }}
@@ -64,7 +64,7 @@ export default function ExperienceForm({
             title="End Date"
             type="date"
             placeholder="End Date"
-            id="endDate"
+            id={`${exp.id}-endDate`}
             onChange={(e) => handleChange(e)}
             value={exp.endDate}
             style={{ flexGrow: 1, flexShrink: 1 }}

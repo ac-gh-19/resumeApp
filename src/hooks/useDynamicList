@@ -11,7 +11,7 @@ export default function useDynamicList(list, setList) {
 
     const updateItem = useCallback(
         (updatedItem) => {
-            setList(prevList => prevList.map((item) => item.id === updatedItem.id ? updatedItem: item))
+            setList(prevList => prevList.map((item) => item.id === updatedItem.id ? updatedItem : item))
         },
         [setList],
     )

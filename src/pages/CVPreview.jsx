@@ -137,7 +137,7 @@ export default function CVPreview({
         </h3>
         {additionalInfo.length > 0
           ? additionalInfo.map((additional) => (
-              <ul className="list-disc pl-5 space-y-0.5">
+              <ul className="list-disc pl-5 space-y-0.5" key={additional.id}>
                 {additional.descriptions.map((description) => (
                   <li key={description.id} className="leading-snug">
                     <span className="font-semibold">

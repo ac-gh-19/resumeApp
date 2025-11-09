@@ -79,7 +79,7 @@ export default function MainPage() {
             ></SkillsSection>
           </div>
           <div className="p-5 pl-2.5 flex-1 min-w-xs xs:min-w-sm">
-            <div div className="sticky top-18">
+            <div className="sticky top-18">
               <div className="h-full overflow-y-auto shadow-stone-500 shadow-lg">
                 <CVPreview
                   personalInfo={personalInfo}
