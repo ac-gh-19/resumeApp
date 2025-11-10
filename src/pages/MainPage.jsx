@@ -6,14 +6,13 @@ import CVPreview from "./CVPreview";
 import AdditionalInfoSection from "./AdditionalInfoSection.jsx";
 import SkillsSection from "./SkillsSection.jsx";
 import { downloadPDF } from "../helpers/helpers.jsx";
+import { useState, useRef } from "react";
 import {
   createNewEducation,
   createNewExperience,
   createNewDescription,
   createNewAdditionalInfo,
 } from "../helpers/helpers.jsx";
-
-import { useState, useRef } from "react";
 
 export default function MainPage() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -34,7 +33,7 @@ export default function MainPage() {
   );
 
   const [skills, setSkills] = useState(
-    Array.from({ length: 9 }, () => createNewDescription()),
+    Array.from({ length: 8 }, () => createNewDescription()),
   );
 
   const [additionalInfo, setAdditionalInfo] = useState(
@@ -55,8 +54,8 @@ export default function MainPage() {
             Download PDF
           </button>
         </div>
-        <div className="flex flex-wrap mt-13">
-          <div className="flex-1 shrink p-5 pr-2.5 flex flex-col gap-5">
+        <div className="flex flex-wrap mt-13 p-5 gap-5">
+          <div className="flex-1 flex flex-col gap-5">
             <InfoSection
               personalInfo={personalInfo}
               setPersonalInfo={setPersonalInfo}
@@ -78,9 +77,9 @@ export default function MainPage() {
               setSkills={setSkills}
             ></SkillsSection>
           </div>
-          <div className="p-5 pl-2.5 flex-1 min-w-xs xs:min-w-sm">
-            <div className="sticky top-18">
-              <div className="h-full overflow-y-auto shadow-stone-500 shadow-lg">
+          <div className="flex-1 min-w-xs">
+            <div div className="sticky top-18">
+              <div className="overflow-y-auto shadow-stone-500 shadow-lg">
                 <CVPreview
                   personalInfo={personalInfo}
                   educations={educations}

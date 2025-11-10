@@ -11,7 +11,7 @@ export default function CVPreview({
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem facilis itaque officia voluptatibus maiores nemo similique ad ut, dolores repellat.";
 
   return (
-    <div className="p-10 bg-white text-gray-900 font-sans leading-tight tracking-tight text-[0.95rem] shadow-sm">
+    <div className="p-10 bg-white text-gray-900 font-sans leading-tight tracking-tight text-[0.95rem] shadow-sm w-full">
       <header className="border-b border-gray-400 pb-2">
         <h1 className="text-3xl font-bold uppercase tracking-wider text-center">
           {personalInfo.fullName || "Your Name"}
@@ -57,10 +57,10 @@ export default function CVPreview({
               <p className="italic text-[0.9rem] pt-1">
                 {exp.company || "Company Name"}
               </p>
-              <ul className="list-disc pl-5 space-y-0.5">
+              <ul className="pl-3 space-y-0.5">
                 {exp.descriptions.map((desc) => (
                   <li key={desc.id} className="leading-snug">
-                    {desc.text}
+                    - {desc.text}
                   </li>
                 ))}
               </ul>
@@ -91,10 +91,10 @@ export default function CVPreview({
               <p className="italic text-[0.9rem]">
                 {edu.degree || "Degree / Major"}
               </p>
-              <ul className="list-disc pl-5 space-y-0.5">
+              <ul className="pl-3 space-y-0.5">
                 {edu.details.map((detail) => (
                   <li key={detail.id} className="leading-snug">
-                    {detail.text}
+                    - {detail.text}
                   </li>
                 ))}
               </ul>
@@ -115,12 +115,12 @@ export default function CVPreview({
           <ul
             className="grid gap-x-2 gap-y-1 pt-2"
             style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
             }}
           >
             {skills.map((skill) => (
-              <li key={skill.id} className="text-[0.9rem] pl-2">
-                • {skill.text}
+              <li key={skill.id} className="text-[0.9rem]">
+                - {skill.text}
               </li>
             ))}
           </ul>
@@ -137,9 +137,9 @@ export default function CVPreview({
         </h3>
         {additionalInfo.length > 0
           ? additionalInfo.map((additional) => (
-              <ul className="list-disc pl-5 space-y-0.5" key={additional.id}>
+              <ul className="space-y-0.5" key={additional.id}>
                 {additional.descriptions.map((description) => (
-                  <li key={description.id} className="leading-snug">
+                  <li key={description.id} className="leading-snug ">
                     <span className="font-semibold">
                       {description.label || "Category"}
                     </span>

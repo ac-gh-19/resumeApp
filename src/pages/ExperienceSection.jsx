@@ -13,6 +13,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
     deleteItem: deleteExperience,
     addNestedItem: addDescription,
     deleteNestedItem: deleteDescription,
+    handleNestedItemChange: updateDescription,
   } = useDynamicList(experiences, setExperiences);
 
   return (
@@ -34,6 +35,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
             addDescription={addDescription}
             deleteDescription={deleteDescription}
             createNewDescription={createNewDescription}
+            updateDescription={updateDescription}
           ></ExperienceForm>
           {index !== experiences.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>

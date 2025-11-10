@@ -1,19 +1,13 @@
 import Input from "./Input";
+import Divider from "./Divider";
 
 export default function AdditionalInfoForm({
-  updateAdditional,
+  updateDescription,
   deleteDescription,
   addDescription,
   additional,
   createNewDescription,
 }) {
-  function handleDescriptionChange(e, key) {
-    const { value, id } = e.target;
-    const newDescriptions = additional.descriptions.map((description) =>
-      description.id === id ? { ...description, [key]: value } : description,
-    );
-    updateAdditional({ ...additional, descriptions: newDescriptions });
-  }
   return (
     <>
       <div className="flex flex-col gap-3">
@@ -33,36 +27,54 @@ export default function AdditionalInfoForm({
           </button>
         </div>
         {additional.descriptions.map((description) => (
-          <div className="flex gap-5" key={description.id}>
-            <Input
-              type="text"
-              placeholder={`Category`}
-              value={description.label}
-              id={`${description.id}-category`}
-              onChange={(e) => handleDescriptionChange(e, "label")}
-              style={{ flexGrow: 1, flexShrink: 10 }}
-            ></Input>
-            <div className="flex" style={{ flexGrow: 10, flexShrink: 1 }}>
+          <div className="flex-col align-top" key={description.id}>
+            <button
+              onClick={() =>
+                deleteDescription(additional.id, "descriptions", description.id)
+              }
+              className="px-2"
+              style={{
+                textAlign: "right",
+                transform: "translateY(28px) translateX(548px)",
+              }}
+            >
+              X
+            </button>
+            <div className="flex flex-wrap gap-5 mr-5">
+              <Input
+                type="text"
+                placeholder={`Category`}
+                value={description.label}
+                id={`${description.id}-category`}
+                onChange={(e) =>
+                  updateDescription(
+                    additional,
+                    "descriptions",
+                    description.id,
+                    e.target.value,
+                    "label",
+                  )
+                }
+                style={{ flexGrow: 1 }}
+                field="category"
+              ></Input>
               <Input
                 type="text"
                 placeholder="Description"
                 value={description.text}
                 id={description.id}
-                onChange={(e) => handleDescriptionChange(e, "text")}
-                style={{ flexGrow: 1 }}
-              ></Input>
-              <button
-                onClick={() =>
-                  deleteDescription(
-                    additional.id,
+                onChange={(e) =>
+                  updateDescription(
+                    additional,
                     "descriptions",
                     description.id,
+                    e.target.value,
+                    "text",
                   )
                 }
-                className="px-2"
-              >
-                X
-              </button>
+                style={{ flexGrow: 10 }}
+                field="text"
+              ></Input>
             </div>
           </div>
         ))}

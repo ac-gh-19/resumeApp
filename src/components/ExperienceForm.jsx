@@ -8,20 +8,8 @@ export default function ExperienceForm({
   deleteExperience,
   deleteDescription,
   createNewDescription,
+  updateDescription,
 }) {
-  function handleChange(e) {
-    const { id, value } = e.target;
-    onChange({ ...exp, [id]: value });
-  }
-
-  function handleDescriptionChange(e) {
-    const { id, value } = e.target;
-    const updatedDescriptions = exp.descriptions.map((description) =>
-      description.id === id ? { ...description, text: value } : description,
-    );
-    onChange({ ...exp, descriptions: updatedDescriptions });
-  }
-
   return (
     <>
       <div className="flex justify-between mb-3">
@@ -39,7 +27,9 @@ export default function ExperienceForm({
           type="text"
           placeholder="Job Title"
           id={`${exp.id}-jobTitle`}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) =>
+            onChange({ ...exp, ["jobTitle"]: e.target.value }, exp.id)
+          }
           value={exp.jobTitle}
         ></Input>
         <Input
@@ -47,7 +37,9 @@ export default function ExperienceForm({
           type="text"
           placeholder="Company"
           id={`${exp.id}-company`}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) =>
+            onChange({ ...exp, ["company"]: e.target.value }, exp.id)
+          }
           value={exp.company}
         ></Input>
         <div className="flex gap-5 flex-wrap">
@@ -56,7 +48,9 @@ export default function ExperienceForm({
             type="date"
             placeholder="Start Date"
             id={`${exp.id}-startDate`}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) =>
+              onChange({ ...exp, ["startDate"]: e.target.value }, exp.id)
+            }
             value={exp.startDate}
             style={{ flexGrow: 1, flexShrink: 1 }}
           ></Input>
@@ -65,7 +59,9 @@ export default function ExperienceForm({
             type="date"
             placeholder="End Date"
             id={`${exp.id}-endDate`}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) =>
+              onChange({ ...exp, ["endDate"]: e.target.value }, exp.id)
+            }
             value={exp.endDate}
             style={{ flexGrow: 1, flexShrink: 1 }}
           ></Input>
@@ -87,7 +83,15 @@ export default function ExperienceForm({
               type="text"
               placeholder="Description"
               id={description.id}
-              onChange={(e) => handleDescriptionChange(e)}
+              onChange={(e) =>
+                updateDescription(
+                  exp,
+                  "descriptions",
+                  description.id,
+                  e.target.value,
+                  "text",
+                )
+              }
               value={description.text}
               style={{ flexGrow: 1 }}
             ></Input>

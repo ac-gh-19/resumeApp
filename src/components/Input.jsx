@@ -6,6 +6,7 @@ export default function Input({
   value,
   id,
   style,
+  field,
 }) {
   return type != "textarea" ? (
     <label className="flex flex-col gap-1 font-medium" style={style}>
@@ -16,6 +17,7 @@ export default function Input({
         onChange={onChange}
         value={value}
         id={id}
+        field={field}
         className={
           "bg-black border-stone-600 px-4 py-1 border rounded-md text-white font-normal focus:outline-stone-500"
         }

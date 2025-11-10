@@ -93,7 +93,7 @@ async function downloadPDF(exportRef, name) {
     position -= pageHeight;
   }
 
-  pdf.save(`${name || "My_CV"}.pdf`);
+  pdf.save(`${name}'s_CV.pdf`);
 }
 
 export {

@@ -15,6 +15,7 @@ export default function EducationSection({ educations, setEducations }) {
     deleteItem: deleteEducation,
     addNestedItem: addDetail,
     deleteNestedItem: deleteDetail,
+    handleNestedItemChange: updateDetail,
   } = useDynamicList(educations, setEducations);
 
   return (
@@ -34,6 +35,7 @@ export default function EducationSection({ educations, setEducations }) {
             education={education}
             deleteDetail={deleteDetail}
             createNewDetail={createNewDetail}
+            updateDetail={updateDetail}
           ></EducationForm>
           {index !== educations.length - 1 && (
             <Divider top="mt-10" bottom="mb-6"></Divider>

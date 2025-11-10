@@ -10,8 +10,8 @@ export default function useDynamicList(list, setList) {
     )
 
     const updateItem = useCallback(
-        (updatedItem) => {
-            setList(prevList => prevList.map((item) => item.id === updatedItem.id ? updatedItem : item))
+        (updatedItem, id) => {
+            setList(prevList => prevList.map((item) => item.id === id ? updatedItem : item))
         },
         [setList],
     )
@@ -46,5 +46,16 @@ export default function useDynamicList(list, setList) {
         },
         [setList],
     )
-    return { addItem, updateItem, deleteItem, addNestedItem, deleteNestedItem };
+
+    const handleNestedItemChange = useCallback(
+        (item, subitemsKey, subitemID, value, key) => {
+            const newNestedItem = item[subitemsKey].map((subitem) =>
+            subitem.id === subitemID ? { ...subitem, [key]: value } : subitem
+        );
+    updateItem({ ...item, [subitemsKey]: newNestedItem }, item.id );
+  },
+  [setList],
+)
+
+    return { addItem, updateItem, deleteItem, addNestedItem, deleteNestedItem, handleNestedItemChange };
 }

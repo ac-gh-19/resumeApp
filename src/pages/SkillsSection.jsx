@@ -26,7 +26,7 @@ export default function AdditionalSection({ skills, setSkills }) {
                 placeholder={`Skill ${index + 1}`}
                 style={{ flexGrow: 1 }}
                 onChange={(e) =>
-                  updateSkill({ ...skill, text: e.target.value })
+                  updateSkill({ ...skill, text: e.target.value }, skill.id)
                 }
                 value={skill.text}
               ></Input>

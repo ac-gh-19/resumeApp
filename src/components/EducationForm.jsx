@@ -8,20 +8,8 @@ export default function EducationForm({
   education,
   index,
   createNewDetail,
+  updateDetail,
 }) {
-  function handleChange(e) {
-    const { value, id } = e.target;
-    onChange({ ...education, [id]: value });
-  }
-
-  function handleDetailChange(e) {
-    const { value, id } = e.target;
-    const newDetails = education.details.map((detail) =>
-      detail.id === id ? { ...detail, text: value } : detail,
-    );
-    onChange({ ...education, details: newDetails });
-  }
-
   return (
     <>
       <div className="flex justify-between mb-3">
@@ -38,7 +26,9 @@ export default function EducationForm({
           type="text"
           value={education.school}
           placeholder="School"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) =>
+            onChange({ ...education, ["school"]: e.target.value }, education.id)
+          }
           title="School"
           id={`${education.id}-school`}
         ></Input>
@@ -46,7 +36,9 @@ export default function EducationForm({
           type="text"
           value={education.degree}
           placeholder="Degree"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) =>
+            onChange({ ...education, ["degree"]: e.target.value }, education.id)
+          }
           title="Degree"
           id={`${education.id}-degree`}
         ></Input>
@@ -54,7 +46,12 @@ export default function EducationForm({
           <Input
             type="date"
             value={education.startDate}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) =>
+              onChange(
+                { ...education, ["startDate"]: e.target.value },
+                education.id,
+              )
+            }
             title="Start Date"
             id={`${education.id}-startDate`}
             style={{ flexGrow: 1, flexShrink: 1 }}
@@ -62,7 +59,12 @@ export default function EducationForm({
           <Input
             type="date"
             value={education.endDate}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) =>
+              onChange(
+                { ...education, ["endDate"]: e.target.value },
+                education.id,
+              )
+            }
             title="End Date"
             id={`${education.id}-endDate`}
             style={{ flexGrow: 1, flexShrink: 1 }}
@@ -83,7 +85,15 @@ export default function EducationForm({
               type="text"
               placeholder="Detail"
               id={detail.id}
-              onChange={(e) => handleDetailChange(e)}
+              onChange={(e) =>
+                updateDetail(
+                  education,
+                  "details",
+                  detail.id,
+                  e.target.value,
+                  "text",
+                )
+              }
               value={detail.text}
               style={{ flexGrow: 1 }}
             ></Input>

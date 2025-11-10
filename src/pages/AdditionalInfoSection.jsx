@@ -10,24 +10,23 @@ export default function AdditionalInfoSection({
 }) {
   const {
     updateItem: updateAdditional,
-    deleteItem: deleteAdditional,
     addNestedItem: addDescription,
     deleteNestedItem: deleteDescription,
+    handleNestedItemChange: updateDescription,
   } = useDynamicList(additionalInfo, setAdditionalInfo);
 
   return (
     <SectionContainer>
       <SectionHeader title="Additional Section"></SectionHeader>
-      {additionalInfo.map((additional, index) => (
+      {additionalInfo.map((additional) => (
         <div key={additional.id}>
           <AdditionalInfoForm
             updateAdditional={updateAdditional}
-            deleteAdditional={deleteAdditional}
             addDescription={addDescription}
             deleteDescription={deleteDescription}
             additional={additional}
+            updateDescription={updateDescription}
             createNewDescription={createNewDescription}
-            index={index}
           ></AdditionalInfoForm>
         </div>
       ))}
