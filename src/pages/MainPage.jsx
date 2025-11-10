@@ -7,7 +7,7 @@ import AdditionalInfoSection from "./AdditionalInfoSection.jsx";
 import SkillsSection from "./SkillsSection.jsx";
 import { downloadPDF } from "../helpers/helpers.jsx";
 import { useState, useRef } from "react";
-import githubIcon from "../assets/githubIcon.svg"
+import githubIcon from "../assets/githubIcon.svg";
 import {
   createNewEducation,
   createNewExperience,
@@ -16,58 +16,70 @@ import {
 } from "../helpers/helpers.jsx";
 
 export default function MainPage() {
-  const [personalInfo, setPersonalInfo] = useState({
-    fullName: "",
-    jobTitle: "",
-    email: "",
-    phoneNumber: "",
-    location: "",
-    summary: "",
-  });
+  const [personalInfo, setPersonalInfo] = useState(
+    JSON.parse(localStorage.getItem("personalInfo")) || {
+      fullName: "",
+      jobTitle: "",
+      email: "",
+      phoneNumber: "",
+      location: "",
+      summary: "",
+    },
+  );
 
   const [experiences, setExperiences] = useState(
-    Array.from({ length: 2 }, () => createNewExperience()),
+    JSON.parse(localStorage.getItem("experiences")) ||
+      Array.from({ length: 2 }, () => createNewExperience()),
   );
 
   const [educations, setEducations] = useState(
-    Array.from({ length: 1 }, () => createNewEducation()),
+    JSON.parse(localStorage.getItem("educations")) ||
+      Array.from({ length: 1 }, () => createNewEducation()),
   );
 
   const [skills, setSkills] = useState(
-    Array.from({ length: 8 }, () => createNewDescription()),
+    JSON.parse(localStorage.getItem("skills")) ||
+      Array.from({ length: 8 }, () => createNewDescription()),
   );
 
   const [additionalInfo, setAdditionalInfo] = useState(
-    Array.from({ length: 1 }, () => createNewAdditionalInfo()),
+    JSON.parse(localStorage.getItem("additionalInfo")) ||
+      Array.from({ length: 1 }, () => createNewAdditionalInfo()),
   );
 
   const exportRef = useRef();
 
+  function saveInfoBeforeUnload() {
+    localStorage.setItem("personalInfo", JSON.stringify(personalInfo));
+    localStorage.setItem("experiences", JSON.stringify(experiences));
+    localStorage.setItem("educations", JSON.stringify(educations));
+    localStorage.setItem("skills", JSON.stringify(skills));
+    localStorage.setItem("additionalInfo", JSON.stringify(additionalInfo));
+  }
+
+  window.addEventListener("beforeunload", saveInfoBeforeUnload);
   return (
     <>
       <div className="h-screen">
         <div className="fixed bg-[#151515] border-stone-400 border-b top-0 w-full z-1000">
           <Header>
             <div className="flex justify-between items-center">
-                <h1 className="font-bold text-xl sm:text-2xl">CV Generator</h1>
-                <div className="flex gap-2 sm:gap-5">
-                    <button
-                        className="border rounded px-2 bg-stone-700"
-                        onClick={() => downloadPDF(exportRef, personalInfo.fullName)}
-                    >
-                        Download PDF
-                    </button>
-                    <a href="https://github.com/ac-gh-19/resumeApp">
-                        <img src={githubIcon}
-                        className="w-10 icon">
-                        </img>
-                    </a>
-
-                </div>
+              <h1 className="font-bold text-xl sm:text-2xl">CV Generator</h1>
+              <div className="flex gap-2 sm:gap-5">
+                <button
+                  className="border rounded px-2 bg-stone-700"
+                  onClick={() => downloadPDF(exportRef, personalInfo.fullName)}
+                >
+                  Download PDF
+                </button>
+                <a href="https://github.com/ac-gh-19/resumeApp">
+                  <img src={githubIcon} className="w-10 icon"></img>
+                </a>
+              </div>
             </div>
           </Header>
         </div>
-        <div className="flex flex-wrap mt-13 p-5 gap-5">
+        <div className="flex flex-wrap mt-13 p-8 pl-5 pr-5 gap-5">
           <div className="flex-1 flex flex-col gap-5">
             <InfoSection
               personalInfo={personalInfo}
@@ -91,7 +103,7 @@ export default function MainPage() {
             ></SkillsSection>
           </div>
           <div className="flex-1 min-w-xs">
-            <div div className="sticky top-18">
+            <div div className="sticky top-21">
               <div className="overflow-y-auto shadow-stone-500 shadow-lg">
                 <CVPreview
                   personalInfo={personalInfo}

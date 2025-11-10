@@ -28,13 +28,12 @@ button:hover {
 }
 
 .icon {
- transition: transform 500ms;
+  transition: transform 500ms;
 }
 
 .icon:hover {
   transform: rotate(-1turn) scale(1.1);
 }
-
 
 /* html2Canvas doesn't support OKLCH colors */
 .CV-export * {

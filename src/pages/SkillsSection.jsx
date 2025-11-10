@@ -22,7 +22,7 @@ export default function AdditionalSection({ skills, setSkills }) {
         <div className="flex flex-wrap gap-5">
           {skills.map((skill, index) => (
             <div className="flex" key={skill.id} style={{ flexGrow: 1 }}>
-            <button className="pr-2" onClick={() => deleteSkill(skill)}>
+              <button className="pr-2" onClick={() => deleteSkill(skill)}>
                 X
               </button>
               <Input
