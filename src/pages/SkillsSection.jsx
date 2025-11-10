@@ -22,6 +22,9 @@ export default function AdditionalSection({ skills, setSkills }) {
         <div className="flex flex-wrap gap-5">
           {skills.map((skill, index) => (
             <div className="flex" key={skill.id} style={{ flexGrow: 1 }}>
+            <button className="pr-2" onClick={() => deleteSkill(skill)}>
+                X
+              </button>
               <Input
                 placeholder={`Skill ${index + 1}`}
                 style={{ flexGrow: 1 }}
@@ -30,9 +33,6 @@ export default function AdditionalSection({ skills, setSkills }) {
                 }
                 value={skill.text}
               ></Input>
-              <button className="pl-2" onClick={() => deleteSkill(skill)}>
-                X
-              </button>
             </div>
           ))}
         </div>

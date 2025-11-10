@@ -16,7 +16,7 @@ export default function EducationForm({
         <h1 className="font-semibold">Education {index + 1}</h1>
         <button
           onClick={() => deleteEducation(education)}
-          className="border rounded border-stone-300 px-2 bg-stone-700 text-red"
+          className="border rounded border-stone-400 px-2 bg-stone-700 text-red"
         >
           Delete
         </button>
@@ -74,13 +74,19 @@ export default function EducationForm({
           <div>Details</div>
           <button
             onClick={() => addDetail(education.id, "details", createNewDetail)}
-            className="border rounded border-stone-300 px-2 bg-stone-700"
+            className="border rounded border-stone-400 px-2 bg-stone-700"
           >
             Add
           </button>
         </div>
         {education.details.map((detail) => (
           <div className="flex" key={detail.id}>
+            <button
+              onClick={() => deleteDetail(education.id, "details", detail.id)}
+              className="pr-3"
+            >
+              X
+            </button>
             <Input
               type="text"
               placeholder="Detail"
@@ -97,12 +103,6 @@ export default function EducationForm({
               value={detail.text}
               style={{ flexGrow: 1 }}
             ></Input>
-            <button
-              onClick={() => deleteDetail(education.id, "details", detail.id)}
-              className="px-2"
-            >
-              X
-            </button>
           </div>
         ))}
       </div>

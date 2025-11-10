@@ -7,6 +7,7 @@ import AdditionalInfoSection from "./AdditionalInfoSection.jsx";
 import SkillsSection from "./SkillsSection.jsx";
 import { downloadPDF } from "../helpers/helpers.jsx";
 import { useState, useRef } from "react";
+import githubIcon from "../assets/githubIcon.svg"
 import {
   createNewEducation,
   createNewExperience,
@@ -45,14 +46,26 @@ export default function MainPage() {
   return (
     <>
       <div className="h-screen">
-        <div className="fixed justify-between flex bg-[#151515] border-stone-400 border-b top-0 w-full z-1000">
-          <Header title="CV Generator"></Header>
-          <button
-            className="px-5"
-            onClick={() => downloadPDF(exportRef, personalInfo.fullName)}
-          >
-            Download PDF
-          </button>
+        <div className="fixed bg-[#151515] border-stone-400 border-b top-0 w-full z-1000">
+          <Header>
+            <div className="flex justify-between items-center">
+                <h1 className="font-bold text-xl sm:text-2xl">CV Generator</h1>
+                <div className="flex gap-2 sm:gap-5">
+                    <button
+                        className="border rounded px-2 bg-stone-700"
+                        onClick={() => downloadPDF(exportRef, personalInfo.fullName)}
+                    >
+                        Download PDF
+                    </button>
+                    <a href="https://github.com/ac-gh-19/resumeApp">
+                        <img src={githubIcon}
+                        className="w-10 icon">
+                        </img>
+                    </a>
+
+                </div>
+            </div>
+          </Header>
         </div>
         <div className="flex flex-wrap mt-13 p-5 gap-5">
           <div className="flex-1 flex flex-col gap-5">

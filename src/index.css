@@ -19,6 +19,23 @@
   box-sizing: border-box;
 }
 
+button {
+  transition: transform 400ms ease;
+}
+button:hover {
+  will-change: transform;
+  transform: scale(1.06);
+}
+
+.icon {
+ transition: transform 500ms;
+}
+
+.icon:hover {
+  transform: rotate(-1turn) scale(1.1);
+}
+
+
 /* html2Canvas doesn't support OKLCH colors */
 .CV-export * {
   color: rgb(17, 24, 39) !important;

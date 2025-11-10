@@ -1,7 +1,7 @@
-export default function Header({ title = "Title" }) {
+export default function Header({ children }) {
   return (
-    <header className="px-6 py-3">
-      <h1 className="text-2xl font-bold">{title}</h1>
+    <header className="px-6 py-3 w-full">
+        {children}
     </header>
   );
 }

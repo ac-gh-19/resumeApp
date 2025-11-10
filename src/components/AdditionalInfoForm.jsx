@@ -21,7 +21,7 @@ export default function AdditionalInfoForm({
                 createNewDescription,
               )
             }
-            className="border rounded border-stone-300 px-2 bg-stone-700"
+            className="border rounded border-stone-400 px-2 bg-stone-700"
           >
             Add
           </button>
@@ -35,12 +35,12 @@ export default function AdditionalInfoForm({
               className="px-2"
               style={{
                 textAlign: "right",
-                transform: "translateY(28px) translateX(548px)",
+                transform: "translateY(28px) translateX(-9px)",
               }}
             >
               X
             </button>
-            <div className="flex flex-wrap gap-5 mr-5">
+            <div className="flex flex-wrap gap-5 ml-5">
               <Input
                 type="text"
                 placeholder={`Category`}

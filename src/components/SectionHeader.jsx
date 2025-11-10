@@ -7,7 +7,7 @@ export default function SectionHeader({ title, button = false, onClick }) {
         <h1 className="text-lg font-semibold">{title}</h1>
         {button ? (
           <button
-            className="border rounded-md px-3 border-stone-400 bg-stone-700"
+            className="border rounded-md px-3 border-stone-300 bg-stone-700"
             onClick={() => onClick()}
           >
             Add {title}

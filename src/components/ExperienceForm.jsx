@@ -15,7 +15,7 @@ export default function ExperienceForm({
       <div className="flex justify-between mb-3">
         <h1 className="font-bold">Experience {index + 1}</h1>
         <button
-          className="border rounded border-stone-300 px-2 bg-stone-700 text-red"
+          className="border rounded border-stone-400 px-2 bg-stone-700 text-red"
           onClick={() => deleteExperience(exp)}
         >
           Delete
@@ -72,13 +72,21 @@ export default function ExperienceForm({
             onClick={() =>
               addDescription(exp.id, "descriptions", createNewDescription)
             }
-            className="border rounded border-stone-300 px-2 bg-stone-700"
+            className="border rounded border-stone-400 px-2 bg-stone-700"
           >
             Add
           </button>
         </div>
         {exp.descriptions.map((description) => (
           <div className="flex" key={description.id}>
+            <button
+              onClick={() =>
+                deleteDescription(exp.id, "descriptions", description.id)
+              }
+              className="pr-3"
+            >
+              X
+            </button>
             <Input
               type="text"
               placeholder="Description"
@@ -95,14 +103,6 @@ export default function ExperienceForm({
               value={description.text}
               style={{ flexGrow: 1 }}
             ></Input>
-            <button
-              onClick={() =>
-                deleteDescription(exp.id, "descriptions", description.id)
-              }
-              className="px-2"
-            >
-              X
-            </button>
           </div>
         ))}
       </div>
